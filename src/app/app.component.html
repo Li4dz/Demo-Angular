@@ -1,20 +1,75 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<h1><strong>Test</strong></h1>
+<div>
+  <ul>
+    <li *ngFor="let heroe of heroes">
+        {{heroe.nombre}}
+    </li>
+  </ul>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<div class="col-auto my-1">
+  <div *ngFor="let heroe of heroes" class="form-check form-check-inline">
+      <input class="form-check-input" [id]="heroe.id" type="radio" name="inlineRadioOptions" [value]="heroe.id">
+      <label class="form-check-label" for="heroe.id">{{heroe.nombre}}</label>
+  </div>
+</div>
+
+
+<br>
+
+<div class="col-md-3">
+  <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+    <option selected>Choose...</option>
+    <option *ngFor="let heroe of heroes" [value]="heroe.id">
+      {{heroe.nombre}}
+    </option>
+  </select>
+</div>
+
+<br/>
+
+<div class="col-md-3">
+  <div *ngFor="let heroe of heroes" class="form-check">
+      <input class="form-check-input" type="checkbox" [id]="check + heroe.id" [value]="heroe.id">
+      <label class="form-check-label" [for]="check + heroe.id">{{heroe.nombre}}</label>
+  </div>
+</div>
+
+<!-- <div class="col-md-3">
+    {{heroes |json}}
+</div> -->
+
+<br>
+
+<div class="col-md-5">
+  <div class="card">
+      <h5 class="card-header">Nuevo Heroe</h5>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="">Nombre Héroe</label>
+          <input [(ngModel)]="heroe.nombre" class="form-control" type="text">
+        </div>
+        <div class="form-check">
+            <input type="checkbox" value="heroe.id" class="form-check-input" id="exampleCheck1" 
+            (change)="heroe.checked=$event.target.checked">
+            <label class="form-check-label" for="exampleCheck1">Heroe Check</label>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="agregarHeroe()">Agregar</button>
+      </div>
+  </div>
+</div>
+
+<br>
+
+
+<div class="col-md-4">
+  <div class="form-group">
+      <p [style.color]="flagCambiarColor ? 'green' : 'red'">Texto Cambia Color</p>
+      <button  class="btn" (click)="cambiarColor()"
+      [ngClass]="{ 'btn-success' : flagCambiarColor, 'btn-danger' : !flagCambiarColor }">Cambiar Color </button>
+  </div>
+ 
+</div>
+{{heroe | json}}
