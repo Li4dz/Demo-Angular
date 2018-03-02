@@ -20,6 +20,14 @@ export class AppComponent {
 
   flagCambiarColor : boolean;
 
+  disabledText : boolean;
+
+  showAlert : boolean;
+
+  nombreInput : string;
+
+  tamanoTexto : number = 15;
+
   agregarHeroe(){
     var lastId = this.heroes[this.heroes.length - 1].id
     this.heroe.id = lastId + 1;
@@ -30,5 +38,16 @@ export class AppComponent {
     this.flagCambiarColor = !this.flagCambiarColor;
   }
 
+  disableText(){
+    this.disabledText = !this.disabledText;
+  }  
+
+  mostrarAlerta(alerta:string){
+    
+    this.showAlert = true;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 2000)
+  }
 
 }
